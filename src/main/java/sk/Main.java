@@ -18,10 +18,10 @@ public class Main {
     BigDecimal bytes = new BigDecimal(0);
     try (BufferedReader br = Files.newBufferedReader(Paths.get(buildFilePath), StandardCharsets.UTF_8)) {
       for (String line = null; (line = br.readLine()) != null; ) {
-        if (line.startsWith("define('")) {
-          String module = substringBetween(line, "define('", "/");
+        if (line.startsWith(";define('")) {
+          String module = substringBetween(line, ";define('", "/");
           if (module == null) {
-            module = substringBetween(line, "define('", "'");
+            module = substringBetween(line, ";define('", "'");
           }
           ModuleInfo moduleInfo = new ModuleInfo(module, bytes);
           if (!moduleNames.contains(moduleInfo)) {
